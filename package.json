@@ -1,0 +1,49 @@
+{
+  "name": "blog-webpage",
+  "version": "1.0.0",
+  "description": "blog webpage example using javascript and php",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development",
+    "serve-dev": "webpack-dev-server --mode development --open",
+    "prod": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pratd/blogpost-example.git"
+  },
+  "keywords": [
+    "php",
+    "javascript",
+    "blog"
+  ],
+  "author": "Prattya & Alfonso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pratd/blogpost-example/issues"
+  },
+  "homepage": "https://github.com/pratd/blogpost-example#readme",
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "es6-promise": "^4.2.8",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  }
+}
