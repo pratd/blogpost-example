@@ -72,6 +72,13 @@ module.exports= {
         }
     },
     plugins:[
+<<<<<<< HEAD
+=======
+        // new HTMLWebpackPlugin({
+        //     template: "./src/index.html",
+        //     filename: "./index.html"
+        // }),
+>>>>>>> 87babfc55b84a15c7f0bcd01714673ae4a4b47bc
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery",
