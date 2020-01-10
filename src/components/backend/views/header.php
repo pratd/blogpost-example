@@ -1,33 +1,44 @@
 <?php?>
 <!-- Navigation Block -->
-<div class="bloc l-bloc" id="nav-bloc">
-	<div class="container">
-		<nav class="navbar row">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Company</a>
-				<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle" data-toggle="collapse" data-target=".navbar-1">
-					<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse navbar-1">
-				<ul class="site-navigation nav">
-					<li>
-						<a href="#">about</a>
-					</li>
-					<li>
-						<a href="#">team</a>
-					</li>
-					<li>
-						<a href="#">projects</a>
-					</li>
-					<li>
-						<a href="#">feed</a>
-					</li>
-					<li>
-						<a href="#">contacts</a>
-					</li>
-          </ul>
-			</div>
-		</nav>
-	</div>
-</div>
+<!Doctype html>
+<html lang=en>
+ <head>
+        <title>A blog</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" 
+        integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+        <!--my own style sheet-->
+        <link rel="stylesheet" href="<?php echo constant('URL');?>../blogpost-example/src/assets/css/default.css"/> 
+    </head>
+	<body>
+		<header id="header">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  				<a class="navbar-brand" href="#">Ukuzula</a>
+ 	 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  				</button>
+
+  				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      					<li class="nav-item active">
+        					<a class="nav-link" href="<?php echo constant('URL');?>home">Home <span class="sr-only">(current)</span></a>
+      					</li>
+      					<li class="nav-item">
+        					<a class="nav-link" href="<?php echo constant('URL');?>categories">Categories</a>
+      					</li>
+      					<li class="nav-item">
+        					<a class="nav-link" href="<?php echo constant('URL');?>AboutUs">About Us</a>
+     	 				</li>
+    				</ul>
+    				<form class="form-inline my-2 my-lg-0">
+      					<input class="form-control mr-sm-2" type="search" placeholder="Search by Keyword">
+      					<button class="btn btn-outline-success my-2 my-sm-0" type="submit"> search</button>
+    				</form>
+  				</div>
+			</nav>
+		</header>
+	</body>
+</html>
