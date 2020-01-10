@@ -23,11 +23,9 @@ class newModelController extends Controller{
         $specialChars = preg_match('@[^\w]@', $password);
 
         if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($password) < 8) {
-            $url= "/contorllers/passwordError.php";
-            if(file_exists($url)){
-                require $url;
-                $controller= new passwordError();
-            }
+            echo "Password should be at least 8 characters in length and 
+            should include at least one upper case letter, one number";
+            
         }else{
             $this->model->insert(['userId'=>$userId, 'userName' =>$name,
             'userSurname'=>$surname, 'user_pass'=>$password, 'user_login'=>$emailId ]);

@@ -5,6 +5,7 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+        
     </head>
     <body>
         <?php 
@@ -33,14 +34,17 @@
                 </p>
                 <p>
                     <label for="password">Password</label><br>
-                    <input type="text" name="password" id="" required>
+                    <input type="password"  name="password" id="password" required>
+                    <input type="checkbox" onclick="passwordCheck()">Show Password
                 </p>
                 <p>
                     <input type="submit" value="Register">
                 </p>
             </form>
+
         </div>
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>
     </body>
+    <script src="/blogMedido/blogpost-example/src\components\frontend\passwordCheck.js"></script>  
 </html>  
