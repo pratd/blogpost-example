@@ -11,6 +11,7 @@
         <?php 
         $upOne = dirname(__DIR__,1);
         require $upOne . '/header.php';
+        $flag=0;
         ?>
         
         <div id="main">
@@ -35,16 +36,17 @@
                 <p>
                     <label for="password">Password</label><br>
                     <input type="password"  name="password" id="password" required>
-                    <input type="checkbox" onclick="passwordCheck()">Show Password
+                    <input type="checkbox" onclick="passwordFunc()">Show Password
                 </p>
                 <p>
                     <input type="submit" value="Register">
                 </p>
             </form>
-
+            <div class="center error"><?php if ($flag) echo $flag;?></div>
         </div>
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>
     </body>
-    <script src="/blogMedido/blogpost-example/src\components\frontend\passwordCheck.js"></script>  
+    <script src="/blogMedido/blogpost-example/src\components\frontend\passwordCheck.js"></script>  <!--paswword check js-->
+    <script src="/blogMedido/blogpost-example/src\components\frontend\login.js"></script> <!--login page redirect button js--> 
 </html>  

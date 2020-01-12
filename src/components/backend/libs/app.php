@@ -20,17 +20,26 @@ class App{
       //var_dump($url);
        
       $controllerArchive = $upOne . '/controllers/' . $url[0] . '.php';
-       
-      if (file_exists($controllerArchive)){
+      if($url[0]=="newModelController" && isset($url[1])==0){  //special for login page except all other pages
          require_once $controllerArchive;
          $controller = new $url[0];
-         $controller->loadModel($url[0]);
+         $controller->defaultView();
          if (isset($url[1])){
             $controller->{$url[1]}();
          }
       }else{
-         $controller = new ErrorShown();
+         if (file_exists($controllerArchive)){
+            require_once $controllerArchive;
+            $controller = new $url[0];
+            $controller->loadModel($url[0]);
+            if (isset($url[1])){
+               $controller->{$url[1]}();
+            }
+         }else{
+            $controller = new ErrorShown();
+         }
       }
+      
    }
 }
 ?>

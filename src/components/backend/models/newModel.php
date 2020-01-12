@@ -10,9 +10,9 @@ class newModel extends Model{
         //$this->db->connect
         try{
             $query = $this->db->connect()->prepare('INSERT INTO adminblog (
-                userId, userName, userSurname, user_pass, user_login) VALUES
-                (:userId, :userName, :userSurname, :user_pass, :user_login)');
-            $query->execute(['userId'=>$data['userId'], 'userName'=>$data['userName'],
+                author_Id, userName, userSurname, user_pass, user_login) VALUES
+                (:author_Id, :userName, :userSurname, :user_pass, :user_login)');
+            $query->execute(['author_Id'=>$data['authorId'], 'userName'=>$data['userName'],
             'userSurname'=>$data['userSurname'], 'user_pass'=>$data['user_pass'], 
             'user_login'=>$data['user_login']]);
             echo "insert data";
@@ -20,6 +20,20 @@ class newModel extends Model{
             print_r('Error connection: ' . $e->getMessage());
         }
         
+    }
+    public function validate($data){
+        try{
+            $userId     = $data['authorId'];
+            $userEmail  = $data['user_login'];
+            $check=$this->db->connect()->prepare("SELECT * FROM adminblog WHERE author_ID='$userId' AND user_login='$userEmail'");
+            $checkRows  =$check->execute();
+            $rows = $check->fetchAll();
+            $nRows = count($rows); 
+            //var_dump($nRows) ;
+            return $nRows;
+        }catch(PDOException $e){
+            print_r('Error connection: ' . $e->getMessage());
+        }
     }
 
 }

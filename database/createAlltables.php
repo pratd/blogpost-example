@@ -17,7 +17,7 @@ comment_author TINYTEXT NOT NULL DEFAULT 'anonymous', comment_date TIMESTAMP DEF
 comment_approval VARCHAR(20) DEFAULT 'yes', comment_author_id VARCHAR(60) NOT NULL )";
 
 $table3 = "CREATE TABLE IF NOT EXISTS adminBlog ( userId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(60) NOT NULL, 
-userSurname VARCHAR(60) NOT NULL, user_login VARCHAR(60) NOT NULL, user_pass VARCHAR(50) NOT NULL )";
+userSurname VARCHAR(60) NOT NULL, user_login VARCHAR(60) NOT NULL, user_pass VARCHAR(50) NOT NULL, author_id VARCHAR(30) NOT NULL )";
 
 $tables=[$table1, $table2, $table3];
 //Create Connection
