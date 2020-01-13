@@ -4,23 +4,8 @@ class crteBlog extends Model{
     public function __construct(){
         parent::__construct();
     }
-    //validate if the data entry exists
-    public function validateEntry($data){
-        try{
-            $userPostId     = $data['authorId'];
-            $postTitle      = $data['postTitle'];
-            $check=$this->db->connect()->prepare("SELECT * FROM BlogPosts WHERE author_id='$userPostId' AND post_title=$postTitle");
-            $checkRows  =$check->execute();
-            $rows = $check->fetchAll();
-            $nRows = count($rows); 
-            //var_dump($nRows) ;
-            return $nRows;
-        }catch(PDOException $e){
-            print_r('Error connection: ' . $e->getMessage());
-        }
-    }
-    //create the data entry 
-    public function createBlog($data){
+    //update the data entry
+    public function updateBlog($data){
         $userId         = $data['authorId'];
         $authorName     = $data['Author'];
         $postTitle      = $data['postTitle'];
@@ -43,6 +28,7 @@ class crteBlog extends Model{
             print_r('Error connectio: ' . $e->getMessage());
         }
     }
+    //delete the data entry
 
 }
 ?>

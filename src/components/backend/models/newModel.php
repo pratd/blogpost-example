@@ -25,7 +25,7 @@ class newModel extends Model{
         try{
             $userId     = $data['authorId'];
             $userEmail  = $data['user_login'];
-            $check=$this->db->connect()->prepare("SELECT * FROM adminblog WHERE author_ID='$userId' AND user_login='$userEmail'");
+            $check=$this->db->connect()->query("SELECT * FROM adminblog WHERE author_ID='$userId' AND user_login='$userEmail'");
             $checkRows  =$check->execute();
             $rows = $check->fetchAll();
             $nRows = count($rows); 

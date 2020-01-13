@@ -10,7 +10,7 @@ class myBlogPt extends Model{
             $userId     = $data['authorId'];
             $userEmail  = $data['user_login'];
             $password   = $data['password'];
-            $check=$this->db->connect()->prepare("SELECT * FROM adminblog WHERE author_ID='$userId' AND user_login='$userEmail' AND
+            $check=$this->db->connect()->prepare("SELECT * FROM adminblog WHERE author_id='$userId' AND user_login='$userEmail' AND
             user_pass='$password'");
             $checkRows  =$check->execute();
             $rows = $check->fetchAll();
