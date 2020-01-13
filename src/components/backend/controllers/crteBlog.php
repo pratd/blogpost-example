@@ -5,18 +5,21 @@ class myBlogPtController extends Controller{
 
     function __construct(){
         parent::__construct();
-        
         //echo "<p>new controller main</p>";
     }
     function defaultView(){
-        $this->view->render('myBlog/index');
+        $this->view->render('myBlog/myPage');
     }
-    function loginTheUser(){        
-        $emailId  = $_POST['emailId'];
-        $password = $_POST['password'];
-        $authorId   = $_POST['userId'];
-        //validate if the userid and email exists;
-        $row_cnt = $this->model->validateUser(['authorId'=>$authorId,'user_login'=>$emailId, 'password'=>$password]);
+    function createBlogPost(){        
+        $authorId    = $_POST['userId'];
+        $postTitle   = $_POST['post title'];
+        $postContent = $_POST['post content'];
+        $postCategory= $_POST['post category'];
+        $postAuthor  = $_POST['Author'];
+        $postPublishDt = $_POST['publish date'];
+        //validate if the name of the post and category already exists;
+        $row_cnt = $this->model->validateEntry(['authorId'=>$authorId,'postTitle'=>$postTitle, 'postContent'=>$postContent,
+        'postCategory'=>$postCategory, 'authorName'=>$postAuthor, 'publishDate'=>$postPublishDt]);
         if($row_cnt>0){
                 //var_dump($authorId);
                 $this->view->message ="Welcome back ". $authorId ."!";
