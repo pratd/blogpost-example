@@ -18,14 +18,22 @@ class App{
          return false;
       }
       //var_dump($url);
-       
+      //controller loading options based on the urls
       $controllerArchive = $upOne . '/controllers/' . $url[0] . '.php';
-      if($url[0]=="newModelController" && isset($url[1])==0){  //special for login page except all other pages
+      if ($url[0]=="newModelController" && isset($url[1])==0){  //special for login page except all other pages
          require_once $controllerArchive;
          $controller = new $url[0];
          $controller->defaultView();
          if (isset($url[1])){
             $controller->{$url[1]}();
+         }
+      } elseif ($url[0]=="myBlogPtController" && isset($url[1])==0) {
+         require_once $controllerArchive;
+         $controller = new $url[0];
+         $controller->defaultView();
+         if (isset($url[1])){
+            $controller->{$url[1]}();
+           // echo '123';
          }
       }else{
          if (file_exists($controllerArchive)){

@@ -13,7 +13,9 @@
         ?>
         
         <div id="main">
-            <h1 class="center">about Us</h1>
+            <h1 class="center"><?php echo $this->message?></h1>
+        </div>
+        <div id="myBlog">
         </div>
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>

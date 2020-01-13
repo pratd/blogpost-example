@@ -36,8 +36,9 @@ class newModelController extends Controller{
             }else{
                 $this->model->insert(['authorId'=>$authorId, 'userName' =>$name,
                 'userSurname'=>$surname, 'user_pass'=>$password, 'user_login'=>$emailId ]);
+                echo "User registered";
             }            
-            echo "User registered";
+           
             //var_dump($this->model) ;
            // $this->model->insert();
         }

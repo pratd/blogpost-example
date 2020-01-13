@@ -15,7 +15,7 @@
             <p class="center error"><?php echo $this->message?></p>
         </div>
         <button onclick="window.history.back()">Go Back</button>
-        <button id="Login button">Login</button>
+        <button id="Login button">Go to Login</button>
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>        
     </body>

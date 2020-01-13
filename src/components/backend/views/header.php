@@ -30,7 +30,7 @@
         					<a class="nav-link" href="<?php echo constant('URL');?>categories">Categories</a>
       					</li>
       					<li class="nav-item">
-        					<a class="nav-link" href="<?php echo constant('URL');?>AboutUs">About Us</a>
+        					<a class="nav-link" href="<?php echo constant('URL');?>myBlogPtController">My Blog</a>
      	 				</li>
     				</ul>
     				<form class="form-inline my-2 my-lg-0">
