@@ -13,9 +13,13 @@
         ?>
         
         <div id="main">
-            <h1 class="center"><?php echo $this->message?></h1>
+            <h1 class="center"><?php echo $this->message;?></h1>
         </div>
         <div id="myBlog">
+            <?php foreach ($this->data as $row) {
+                $blog = new blogData;
+                
+            }; ?>
         </div>
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>

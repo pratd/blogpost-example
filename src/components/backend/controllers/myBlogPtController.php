@@ -24,7 +24,7 @@ class myBlogPtController extends Controller{
                 //var_dump($blogItems);
                 //render the blog items
                 $this->view->data = $blogItems;
-                $this->view->render('main/myPage');
+                $this->view->render('myBlog/myPage');
         }else{
                $this->view->message="User Id or Email not correct, please Re-enter!";
                $this->view->render('errors/passwordError');
