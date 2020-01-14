@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once './src/components/backend/libs/createDb.php';
 require_once './src/components/backend/libs/controller.php';
 require_once './src/components/backend/libs/view.php';

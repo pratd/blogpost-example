@@ -47,5 +47,5 @@
         require $upOne . '/footer.php';?>
     </body>
     <script src="/blogMedido/blogpost-example/src\components\frontend\passwordCheck.js"></script>  <!--paswword check js-->
-    <script src="/blogMedido/blogpost-example/src\components\frontend\login.js"></script> <!--login page redirect button js--> 
+    
 </html>  

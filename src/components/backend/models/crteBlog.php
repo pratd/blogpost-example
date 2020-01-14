@@ -1,4 +1,7 @@
 <?php
+$upOne = dirname(__DIR__,1);
+include_once $upOne . '/models/blogData.php';
+//echo $upOne;
 class crteBlog extends Model{
     //extending the parent model
     public function __construct(){
@@ -9,7 +12,7 @@ class crteBlog extends Model{
         try{
             $userPostId     = $data['authorId'];
             $postTitle      = $data['postTitle'];
-            $check=$this->db->connect()->prepare("SELECT * FROM BlogPosts WHERE author_id='$userPostId' AND post_title=$postTitle");
+            $check=$this->db->connect()->prepare("SELECT * FROM BlogPosts WHERE author_id='$userPostId' AND post_title='$postTitle'");
             $checkRows  =$check->execute();
             $rows = $check->fetchAll();
             $nRows = count($rows); 
@@ -22,7 +25,7 @@ class crteBlog extends Model{
     //create the data entry 
     public function createBlog($data){
         $userId         = $data['authorId'];
-        $authorName     = $data['Author'];
+        $authorName     = $data['postAuthor'];
         $postTitle      = $data['postTitle'];
         $postKeywords   = $data['key_words'];
         $postContent    = $data['postContent'];
@@ -31,14 +34,40 @@ class crteBlog extends Model{
         $postStatus     = $data['postStatus'];
         $items=[];
         try{
-            $queryBlog = $this->db->connect()->prepare('INSERT INTO BlogPost(post_title, key_words, post_author, author_id
-            post_status, post_date, post_publish_date, post_category ) VALUES (:post_title, :key_words, :post_author, :author_id
-            :post_status, :post_date, :post_publish_date, :post_category)');
+            $queryBlog = $this->db->connect()->prepare('INSERT INTO BlogPosts(post_title, key_words, post_author, author_id,
+            post_status, post_date, post_publish_date, post_category, post_content ) VALUES (:post_title, :key_words, :post_author, :author_id,
+            :post_status, :post_date, :post_publish_date, :post_category, :post_content)');
             $queryBlog->execute(['post_title'=>$postTitle, 'key_words'=>$postKeywords, 'post_author'=>$authorName,
             'author_id'=>$userId, 'post_status'=>$postStatus, 'post_date'=>date('Y-m-d H:i:s'), 'post_publish_date'=>$postDate,
-            'post_category'=>$postCategory]);
+            'post_category'=>$postCategory, 'post_content'=>$postContent]);
             //execution of data
-            echo"data executed";
+           // echo"data executed";
+        }catch(PDOException $e){
+            print_r('Error connectio: ' . $e->getMessage());
+        }
+    }
+    public function getBlogdata($data){
+        $userId = $data['authorId'];
+        $items=[];
+        try{
+            $queryBlog = $this->db->connect()->query("SELECT * FROM BlogPosts WHERE BlogPosts.author_id='$userId' 
+            ORDER BY BlogPosts.post_publish_date");
+            $blogs = $queryBlog->execute();
+            while ($row = $queryBlog->fetch()) {
+                $blogPost = new blogData();
+                //print_r( $row);
+                $blogPost->postTitle= $row['post_title'];
+                $blogPost->post_content=$row['post_content'];
+                $blogPost->post_publish_date=$row['post_publish_date'];
+                $blogPost->post_category=$row['post_category'];
+                $blogPost->post_status=$row['post_status'];
+                $blogPost->postAuthor=$row['post_author'];
+                $blogPost->keyWords = $row['Key_words'];
+                $blogPost->post_id = $row['post_id'];
+                $blogPost->post_athor_id=$row['author_id'];
+                array_push($items,$blogPost);
+            }
+        return $items;
         }catch(PDOException $e){
             print_r('Error connectio: ' . $e->getMessage());
         }

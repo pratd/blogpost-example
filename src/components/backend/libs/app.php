@@ -27,7 +27,7 @@ class App{
          if (isset($url[1])){
             $controller->{$url[1]}();
          }
-      } elseif ($url[0]=="myBlogPtController" && isset($url[1])==0) {
+      } elseif ($url[0]=="myBlogPtController" && isset($url[1])==0) { //for displaying my blogs
          require_once $controllerArchive;
          $controller = new $url[0];
          $controller->defaultView();
@@ -35,6 +35,15 @@ class App{
             $controller->{$url[1]}();
            // echo '123';
          }
+      }elseif($url[0]=="crteBlogController" && isset($url[1])==0){ //creating blog controller
+         require_once $controllerArchive;
+         $controller = new $url[0];
+         $controller->defaultView();
+         $controller->loadModel($url[0]);
+         //echo "123";
+         // if( (isset($url[1]))){
+         //     $controller->{$url[1]}();
+         // }
       }else{
          if (file_exists($controllerArchive)){
             require_once $controllerArchive;

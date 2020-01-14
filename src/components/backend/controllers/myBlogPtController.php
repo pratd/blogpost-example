@@ -11,7 +11,13 @@ class myBlogPtController extends Controller{
     function defaultView(){
         $this->view->render('myBlog/index');
     }
-    function loginTheUser(){        
+    function loginTheUser(){ 
+        if(isset($_POST['userId'])){
+            $_SESSION['userID'] =$_POST['userId'];
+            $_SESSION['password'] =$_POST['password'];
+            $_SESSION['email id'] =$_POST['emailId'];
+           // print_r($_SESSION);
+        }       
         $emailId  = $_POST['emailId'];
         $password = $_POST['password'];
         $authorId   = $_POST['userId'];

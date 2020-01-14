@@ -15,51 +15,64 @@
         <div id="main">
             <h5 class="center"><?php echo $this->message;?></h5>
         </div>
-        <div id="myBlog">
+        <div class="container mt-4" id="createblog">
+            <div class="row mb-4 container">
+                <a href="<?php echo constant('URL');?>crteBlogController/defaultView">Create Blog</a>
+            </div>
+        </div>
+        <!-- BLOG POSTS -->
+        <div class="container mt-4 border border-light" id="myBlog">
             <?php $upOne = dirname(__DIR__,2);
                 include_once $upOne . '/models/blogData.php';
                 foreach ($this->data as $row) {
                 $blog = new blogData();
                 $blog = $row;
-                ?>
-            <div id = "<?php echo $blog->post_id?>" class= "container mt-4 border border-light">
-                <div class="row">
-                    <div class="col-3">
-                        <a href="#">Edit</a>
-                        <a href="#">Delete</a>
-                    </div>
-                    <div class="col-2 offset-2">
-                        <h2><?php echo $blog->postTitle?></h2>
-                    </div>
-                    <div class="col-2 offset-3">
-                        <a href="#">Edit Post/</a>
-                        <a href="#">Delete Post</a>
-                    </div>
+            ?>
+            <div class="row d-flex justify-content-center mr-5" id = "<?php echo $blog->post_id?>">
+                <div>
+                    <h3 class="biggerfont post-title mr-6"><?php echo $blog->postTitle;?></h3>
                 </div>
-                <div class="row">
-                    <div class="col-2">
-                        <p class="small-font">Keywords: Travel, Thailand, Hotels</p>
-                    </div>
-                    <div class="col-2 offset-3">
-                        <p>Date: <?php echo $blog->post_publish_date?></p>    
-                    </div>
-                    <div class="col-2 offset-3">
-                        <p class="small-font">Author: <?php echo $blog->postAuthor?></p>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <p class="small-font">Author: <?php echo $blog->postAuthor;?></p>
                 </div>
-                <div class="row">
-                    <p><?echo $blog->post_content?></p>
+                <div class="col-2 offset-2">
+                    <p class="small-font">Date: <?php echo $blog->post_publish_date;?></p>    
                 </div>
-                <div class="row">
-                    <div class="col-2">
-                        <textarea rows="1" cols="90"> </textarea>
-                    </div>
-                    <div class="col-1 offset-5">
-                        <button type="button" class="btn btn-primary comment">Comment</button>
-                    </div>
-                    <div class="col-2 ml-2">
-                        <button type="button" class="btn btn-primary delete">Delete Comment</button>
-                    </div>
+                <div class="col-2 offset-3">
+                    <p class="small-font">Keywords: <?php echo $blog->keyWords;?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="d-sm-flex">
+                    <p class="small-font">Category: <?php echo $blog->post_category;?></p>
+                    <a href="<?php echo constant('URL');?>updteDelController/updateBlogPost" class="small-font">(Edit/</a>
+                    <a href="<?php  echo constant('URL');?>updteDelController/deleteBlogPost" class="small-font">Delete)</a>
+                </div>
+            </div>
+            <div class="row">
+                <p><?php echo $blog->post_content;?></p>
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <textarea rows="8" cols="85"> </textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-2 mt-2 mb-2 d-sm-inline-flex">
+                    <a href="#" class="small-font">Edit/</a>
+                    <a href="#" class="small-font">Delete Post</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1 d-sm-flex">
+                    <button type="button" class="btn btn-primary">Comment</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-1 d-sm-flex">
+                    <button type="button" class="btn btn-primary">Delete</button>
                 </div>
             </div>
         <?php }; ?>

@@ -26,19 +26,20 @@ class myBlogPt extends Model{
         $userId = $data['authorId'];
         $items=[];
         try{
-            $queryBlog = $this->db->connect()->prepare("SELECT * FROM BlogPosts WHERE BlogPosts.author_id='$userId' ");
+            $queryBlog = $this->db->connect()->query("SELECT * FROM BlogPosts WHERE BlogPosts.author_id='$userId' 
+            ORDER BY BlogPosts.post_publish_date");
             $blogs = $queryBlog->execute();
-            while ($row = $queryBlog->fetchall()) {
+            while ($row = $queryBlog->fetch()) {
                 $blogPost = new blogData();
-                $blogPost->$postTitle= $row['post_title'];
-                $blogPost->$post_content=$row['post_content'];
-                $blogPost->$post_publish_date=$row['post_publish_date'];
-                $blogPost->$post_category=$row['post_category'];
-                $blogPost->$post_status=$row['post_status'];
-                $blogPost->$postAuthor=$row['post_author'];
-                $blogPost->$keyWords = $row['key_words'];
-                $blogPost->$post_id = $row['post_id'];
-                $blogPost->$post_athor_id=$row['author_id'];
+                $blogPost->postTitle= $row['post_title'];
+                $blogPost->post_content=$row['post_content'];
+                $blogPost->post_publish_date=$row['post_publish_date'];
+                $blogPost->post_category=$row['post_category'];
+                $blogPost->post_status=$row['post_status'];
+                $blogPost->postAuthor=$row['post_author'];
+                $blogPost->keyWords = $row['Key_words'];
+                $blogPost->post_id = $row['post_id'];
+                $blogPost->post_athor_id=$row['author_id'];
                 array_push($items,$blogPost);
             }
         return $items;
