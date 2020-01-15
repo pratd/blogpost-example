@@ -29,8 +29,11 @@
                 $blog = $row;
             ?>
             <div class="row d-flex justify-content-center mr-5" id = "<?php echo $blog->post_id?>">
-                <div>
+                <div class="col-5 offset-3">
                     <h3 class="biggerfont post-title mr-6"><?php echo $blog->postTitle;?></h3>
+                </div>
+                <div class="col-2 offset-2">
+                    <p class="small-font"> Status: <?php echo $blog->post_status;?></p>
                 </div>
             </div>
             <div class="row">
@@ -47,22 +50,22 @@
             <div class="row">
                 <div class="d-sm-flex">
                     <p class="small-font">Category: <?php echo $blog->post_category;?></p>
-                    <a href="<?php echo constant('URL');?>updteDelController/updateBlogPost" class="small-font">(Edit/</a>
-                    <a href="<?php  echo constant('URL');?>updteDelController/deleteBlogPost" class="small-font">Delete)</a>
+                    <a href="<?php echo constant('URL') .'updteDelController/updateBlogPost/' . $blog->post_id;?>" class="small-font">(Edit/</a>
+                    <a href="<?php  echo constant('URL') . 'updteDelController/deleteBlogPost/' . $blog->post_id;?>" class="small-font">Delete)</a>
                 </div>
             </div>
             <div class="row">
                 <p><?php echo $blog->post_content;?></p>
             </div>
             <div class="row">
-                <div class="col-2">
-                    <textarea rows="8" cols="85"> </textarea>
+                <div class="col-2 mt-2 mb-2 d-sm-inline-flex">
+                    <a href="<?php echo constant('URL') .'updteDelController/updateBlogPost/' . $blog->post_id;?>" class="small-font">Edit/</a>
+                    <a href="<?php  echo constant('URL') . 'updteDelController/deleteBlogPost/' . $blog->post_id;?>" class="small-font">Delete Post</a>
                 </div>
             </div>
             <div class="row">
-                <div class="col-2 mt-2 mb-2 d-sm-inline-flex">
-                    <a href="#" class="small-font">Edit/</a>
-                    <a href="#" class="small-font">Delete Post</a>
+                <div class="col-4 mt-2">
+                    <input class="text-input"></input> <!--comment-->
                 </div>
             </div>
             <div class="row">

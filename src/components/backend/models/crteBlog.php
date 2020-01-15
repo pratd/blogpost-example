@@ -65,6 +65,10 @@ class crteBlog extends Model{
                 $blogPost->keyWords = $row['Key_words'];
                 $blogPost->post_id = $row['post_id'];
                 $blogPost->post_athor_id=$row['author_id'];
+                $blogPost->comment_author=$row['comment_author'];
+                $blogPost->comment_content = $row['comment_content'];
+                $blogPost->comment_author_id= $row['comment_author_id'];
+                $blogPost->comment_id=$row['comment_id'];
                 array_push($items,$blogPost);
             }
         return $items;

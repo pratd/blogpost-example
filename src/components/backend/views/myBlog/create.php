@@ -51,7 +51,7 @@
                 </div>
                 <div class="row">
                     <div class="col-4 mt-2">
-                        <textarea name="content" id="" cols="50" rows="10"></textarea>
+                        <input class="text-input" type="text" name="content"></input>
                     </div>
                 </div>
                 <div class="row">
