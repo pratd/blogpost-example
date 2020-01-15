@@ -18,7 +18,7 @@ class crteBlogController extends Controller{
         $postContent    = $_POST['content'];
         $postCategory   = $_POST['categories'];
         $postAuthor     = $_POST['Author_name'];
-        $postPublishDt  = $_POST['publish_date'];
+        $postPublishDt  = date("d-m-Y", strtotime($_POST['publih_date']));
         $postKeyWords   = $_POST['keywords'];
         $postStatus     = $_POST['option'];
         //validate if the name of the post and category already exists;

@@ -44,6 +44,12 @@ class App{
          // if( (isset($url[1]))){
          //     $controller->{$url[1]}();
          // }
+      }elseif($url[0]=="homeModlController" && isset($url[1])==0){
+         require_once $controllerArchive;
+         $controller = new $url[0];
+         $controller->loadModel($url[0]);
+         $controller->defaultView();
+        
       }else{
          if (file_exists($controllerArchive)){
             require_once $controllerArchive;

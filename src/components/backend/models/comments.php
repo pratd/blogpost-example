@@ -2,44 +2,36 @@
 $upOne = dirname(__DIR__,1);
 include_once $upOne . '/models/blogData.php';
 //echo $upOne;
-class crteBlog extends Model{
+class comments extends Model{
     //extending the parent model
     public function __construct(){
         parent::__construct();
     }
-    //validate if the data entry exists
-    public function validateEntry($data){
+    public function getAuthorName($data){
+        $userId         = $data['authorId'];
         try{
-            $userPostId     = $data['authorId'];
-            $postTitle      = $data['postTitle'];
-            $check=$this->db->connect()->prepare("SELECT * FROM BlogPosts WHERE author_id='$userPostId' AND post_title='$postTitle'");
-            $checkRows  =$check->execute();
-            $rows = $check->fetchAll();
-            $nRows = count($rows); 
-            //var_dump($nRows) ;
-            return $nRows;
+            $queryBlog  = $this->db->connect()->query("SELECT userName FROM adminblog WHERE author_ID='$userId'");
+            while($row = $queryBlog->fetch()){
+                $item  = $row;
+            }
+        return $item;
         }catch(PDOException $e){
-            print_r('Error connection: ' . $e->getMessage());
+            print_r('Error connectio: ' . $e->getMessage());
         }
     }
     //create the data entry 
-    public function createBlog($data){
+    public function comments($data){
         $userId         = $data['authorId'];
-        $authorName     = $data['postAuthor'];
-        $postTitle      = $data['postTitle'];
-        $postKeywords   = $data['key_words'];
-        $postContent    = $data['postContent'];
-        $postCategory   = $data['postCategory'];
-        $postDate       = date("d-m-Y", strtotime($data['postPublishDate']));
-        $postStatus     = $data['postStatus'];
-        $items=[];
+        $commentPost    = $data['comment_content'];
+        $commentAuthName  = $data['author_name'];
+        $commentPostId  = $data['comment_post_id'];
+
         try{
-            $queryBlog = $this->db->connect()->prepare('INSERT INTO BlogPosts(post_title, key_words, post_author, author_id,
-            post_status, post_date, post_publish_date, post_category, post_content ) VALUES (:post_title, :key_words, :post_author, :author_id,
-            :post_status, :post_date, :post_publish_date, :post_category, :post_content)');
-            $queryBlog->execute(['post_title'=>$postTitle, 'key_words'=>$postKeywords, 'post_author'=>$authorName,
-            'author_id'=>$userId, 'post_status'=>$postStatus, 'post_date'=>date('Y-m-d H:i:s'), 'post_publish_date'=>$postDate,
-            'post_category'=>$postCategory, 'post_content'=>$postContent]);
+            $queryBlog = $this->db->connect()->prepare('INSERT INTO BlogComments(comment_author_id, comment_content , 
+            comment_post_id, comment_author) VALUES (:comment_author_id, :comment_content, :comment_post_id, :comment_author)');
+            $queryBlog->execute(['comment_author_id'=>$userId, 'comment_content'=>$commentPost, 'comment_post_id'=>$commentPostId,
+            'comment_author'=>$commentAuthName]);
+
             //execution of data
            // echo"data executed";
         }catch(PDOException $e){

@@ -1,6 +1,6 @@
 <?php?>
 <!-- Footer -->
-<footer id ="footer" class="page-footer font-small indigo">
+<footer id ="footer" class="page-footer font-small">
 
   <!-- Footer Links -->
   <div class="container text-center text-md-left">

@@ -9,7 +9,7 @@
     <body>
         <?php 
         $upOne = dirname(__DIR__,1);
-        require $upOne . '/header.php';
+        require $upOne . '/headerUser.php';
         ?>
         
         <div id="main">
@@ -21,19 +21,19 @@
             </div>
         </div>
         <!-- BLOG POSTS -->
-        <div class="container mt-4 border border-light" id="myBlog">
-            <?php $upOne = dirname(__DIR__,2);
-                include_once $upOne . '/models/blogData.php';
-                foreach ($this->data as $row) {
-                $blog = new blogData();
-                $blog = $row;
-            ?>
+        <?php $upOne = dirname(__DIR__,2);
+            include_once $upOne . '/models/blogData.php';
+            foreach ($this->data as $row) {
+            $blog = new blogData();
+            $blog = $row;
+        ?>
+        <div class="container mt-4 border border-light text-center myBlog" id="myBlog">
             <div class="row d-flex justify-content-center mr-5" id = "<?php echo $blog->post_id?>">
-                <div class="col-5 offset-3">
-                    <h3 class="biggerfont post-title mr-6"><?php echo $blog->postTitle;?></h3>
+                <div class="col-4 offset-4 blogTitle">
+                    <h3 class="biggerfont post-title mr-6 text-center"><?php echo $blog->postTitle;?></h3>
                 </div>
-                <div class="col-2 offset-2">
-                    <p class="small-font"> Status: <?php echo $blog->post_status;?></p>
+                <div class="col-2 offset-1">
+                    <p class="small-font text-sm-right"> Status: <?php echo $blog->post_status;?></p>
                 </div>
             </div>
             <div class="row">
@@ -50,8 +50,8 @@
             <div class="row">
                 <div class="d-sm-flex">
                     <p class="small-font">Category: <?php echo $blog->post_category;?></p>
-                    <a href="<?php echo constant('URL') .'updteDelController/updateBlogPost/' . $blog->post_id;?>" class="small-font">(Edit/</a>
-                    <a href="<?php  echo constant('URL') . 'updteDelController/deleteBlogPost/' . $blog->post_id;?>" class="small-font">Delete)</a>
+                    <a href="<?php echo constant('URL') .'updteDelController/updateBlogCategory/' . $blog->post_id;?>" class="small-font">(Edit/</a>
+                    <a href="<?php  echo constant('URL') . 'updteDelController/deleteBlogCategory/' . $blog->post_id;?>" class="small-font">Delete)</a>
                 </div>
             </div>
             <div class="row">
@@ -63,23 +63,38 @@
                     <a href="<?php  echo constant('URL') . 'updteDelController/deleteBlogPost/' . $blog->post_id;?>" class="small-font">Delete Post</a>
                 </div>
             </div>
+            <?php for ($i=0;$i<count($blog->comment_content); $i++) {
+            ?>
             <div class="row">
-                <div class="col-4 mt-2">
-                    <input class="text-input"></input> <!--comment-->
+                <div class="col-8 mt-2 commentBlog">
+                    <p><?php echo $blog->comment_content[$i];?></p>
+                </div>
+                <div class="col-1 d-sm-flex">
+                    <form action="<?php echo constant('URL') .'commentsController/deleteComment/' . $blog->post_id;?>" 
+                    method="POST" class="createComment">
+                        <input type="submit" value="Delete">
+                    </form>
                 </div>
             </div>
+            <?php };?>
+            <!--comment post-->
+            <form action="<?php echo constant('URL') .'commentsController/createComment/' . $blog->post_id;?>" 
+            method="POST" class="createComment">
             <div class="row">
+                <div class="col-8 mt-2">
+                    <input type="text" class="text-input" name="comment_post"> <!--comment-->
+                </div>
                 <div class="col-1 d-sm-flex">
-                    <button type="button" class="btn btn-primary">Comment</button>
+                    <input type="submit" value="Comment">
+                </div>
+                <div class="col-1 d-sm-flex">
+                    <input type="submit" value="Delete">
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-1 d-sm-flex">
-                    <button type="button" class="btn btn-primary">Delete</button>
-                </div>
-            </div>
-        <?php }; ?>
+            </form>
         </div>
+        <?php }; ?>
+       
         <?php   $upOne = dirname(__DIR__,1);
         require $upOne . '/footer.php';?>
     </body>

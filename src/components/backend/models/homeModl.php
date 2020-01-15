@@ -1,35 +1,16 @@
 <?php
 $upOne = dirname(__DIR__,1);
 include_once $upOne . '/models/blogData.php';
-class myBlogPt extends Model{
-
+class homeModl extends Model{
     public function __construct(){
         parent::__construct();
     }
 
-    public function validateUser($data){
-        try{
-            $userId     = $data['authorId'];
-            $userEmail  = $data['user_login'];
-            $password   = $data['password'];
-            $check=$this->db->connect()->prepare("SELECT * FROM adminblog WHERE author_id='$userId' AND user_login='$userEmail' AND
-            user_pass='$password'");
-            $checkRows  =$check->execute();
-            $rows = $check->fetchAll();
-            $nRows = count($rows); 
-            //var_dump($nRows) ;
-            return $nRows;
-        }catch(PDOException $e){
-            print_r('Error connection: ' . $e->getMessage());
-        }
-    }
-
-    public function getBlogdata($data){
-        $userId = $data['authorId'];
+    public function getBlogdata(){
         $items=[];
         try{
             $queryBlog = $this->db->connect()->query("SELECT BlogPosts.*, BlogComments.* FROM BlogPosts Left JOIN 
-            BlogComments ON BlogPosts.post_id = BlogComments.comment_post_id WHERE BlogPosts.author_id='$userId'");
+            BlogComments ON BlogPosts.post_id = BlogComments.comment_post_id ");
             $blogs = $queryBlog->execute(); 
             $store=[];
             $flag=0;
