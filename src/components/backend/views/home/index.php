@@ -61,11 +61,11 @@
             <form action="<?php echo constant('URL') .'commentsController/createComment/' . $blog->post_id;?>" 
             method="POST" class="createComment">
             <div class="row">
-                <div class="col-8 mt-2">
+                <div class="col-8 mt-2 comment_post">
                     <input type="text" class="text-input" name="comment_post"> <!--comment-->
                 </div>
-                <div class="col-1 d-sm-flex">
-                    <input type="submit" class="butnSub" value="Comment">
+                <div class="col-1 d-sm-flex submtButn">
+                    <input type="submit" value="Comment">
                 </div>
             </div>
             </form>

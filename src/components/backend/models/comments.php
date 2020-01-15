@@ -84,7 +84,6 @@ class comments extends Model{
                   $row['comment_author_id'],$row['comment_id']);
               }
               array_push($items,$blogPost);
-              //print_r($store[0]);
               $flag+=1;
             }
         return $items;

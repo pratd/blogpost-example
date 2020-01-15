@@ -10,6 +10,9 @@ class commentsController extends Controller{
     function createComment($param=null){   
         //$this->view->render('myBlog/myPage');       
         //print_r(array_keys($_POST));
+        if(isset($_POST['email id'])==0){
+           $_SESSION['userID']=null;  
+        }
         if(isset($_SESSION['userID'])){
             $authorId = $_SESSION['userID'];
             $authorName = $this->model->getAuthorName(['authorId'=>$authorId])['userName'];
@@ -29,8 +32,18 @@ class commentsController extends Controller{
             //var_dump($blogItems);
             //render the blog items
         $this->view->data = $blogPost;
-        $this->view->render('myBlog/myPage');       
+        if(isset($_SESSION['userID'])){
+           
+            $this->view->render('myBlog/myPage');  
+        }else{
+            //$upOne = dirname(__DIR__,1);
+            header('Location: http://localhost/blogMedido/blogpost-example/homeModlController');
+            $this->view->render('home/index');
+        }     
         
+    }
+    function deleteComment($param=null){
+
     }
 }
 

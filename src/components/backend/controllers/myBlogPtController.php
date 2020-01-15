@@ -17,7 +17,11 @@ class myBlogPtController extends Controller{
             $_SESSION['password'] =$_POST['password'];
             $_SESSION['email id'] =$_POST['emailId'];
            // print_r($_SESSION);
-        }       
+        }else{
+            $_SESSION['userID']=null; 
+            $_SESSION['password']=null;
+            $_SESSION['email id'] =null;
+        }  
         $emailId  = $_POST['emailId'];
         $password = $_POST['password'];
         $authorId   = $_POST['userId'];
