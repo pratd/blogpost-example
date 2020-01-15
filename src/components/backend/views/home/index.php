@@ -17,7 +17,15 @@
         <!-- BLOG POSTS -->
         <?php $upOne = dirname(__DIR__,2);
             include_once $upOne . '/models/blogData.php';
+            $store=[];
+            $flag=1;
             foreach ($this->data as $row) {
+                array_push($store,$row[0]);
+                if(($flag-1)>=0){
+                    if($store[$flag] !== $store[$flag-1]){
+                        continue;
+                    }
+                }
             $blog = new blogData();
             $blog = $row;
         ?>
